@@ -1,0 +1,5 @@
+.asterisk:after {
+    content:" *";
+    color: red;
+    font-size:15px;
+  }
