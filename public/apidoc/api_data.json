@@ -1,0 +1,665 @@
+[
+  {
+    "type": "GET",
+    "url": "/role/:slug",
+    "title": "Role Data",
+    "group": "Master",
+    "success": {
+      "examples": [
+        {
+          "title": "success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {\n        \"_id\": \"645c8b90ef5a641d4d2e47a7\",\n        \"roleDisplayName\": \"Consumer\",\n        \"role\": \"consumer\",\n        \"desc\": \"Consumer of the application.\",\n        \"id\": \"645c8b90ef5a641d4d2e47a7\"\n    },\n    \"message\": \"Role data fetched successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "app/routes/api/master.routes.js",
+    "groupTitle": "Master",
+    "name": "GetRoleSlug"
+  },
+  {
+    "type": "get",
+    "url": "/user/details",
+    "title": "User details",
+    "version": "1.0.0",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "x-access-token",
+            "description": "<p>User Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {\n        \"_id\": \"6458af0c6c0b6f1520504689\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Dalton\",\n        \"full_name\": \"John Dalton\",\n        \"email\": \"johndalton@yopmail.com\",\n        \"password\": \"$2b$08$QveliBbSBQx6XWAGv6usuuKErlJJJmNzZmY1W8ba1zU7pLqXrf4we\",\n        \"role\": \"5ff30fa0026424da732724ce\",\n        \"profile_pic\": \"profile_pic_1683542380724_user1.jpg\",\n        \"emailOTP\": \"\",\n        \"phoneOTP\": \"\",\n        \"deviceToken\": \"\",\n        \"deviceType\": \"\",\n        \"register_type\": \"normal\",\n        \"social_id\": \"\",\n        \"isMobileVerified\": false,\n        \"isEmailVerified\": true,\n        \"isSignupCompleted\": false,\n        \"isDeleted\": false,\n        \"isActive\": true,\n        \"createdAt\": \"2023-05-08T08:13:00.288Z\",\n        \"updatedAt\": \"2023-05-08T10:39:40.732Z\"\n    },\n    \"message\": \"User profile details fetched successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "GetUserDetails"
+  },
+  {
+    "type": "get",
+    "url": "/user/logout",
+    "title": "User Logout",
+    "version": "1.0.0",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "x-access-token",
+            "description": "<p>User Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {},\n    \"message\": \"Logged out successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "GetUserLogout"
+  },
+  {
+    "type": "post",
+    "url": "/user/change-password",
+    "title": "Change Password",
+    "version": "1.0.0",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "x-access-token",
+            "description": "<p>User Token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "old_password",
+            "description": "<p>Old Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "new_password",
+            "description": "<p>New Password</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {},\n    \"message\": \"Password changed successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserChangePassword"
+  },
+  {
+    "type": "post",
+    "url": "/user/email-link-verify",
+    "title": "Email Link Verify",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "encoded_id",
+            "description": "<p>Encoded Id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjIyNzczNGQ3ZTRiZDYxYmNmMWRhZiIsImlhdCI6MTY4NDE1NDI1NCwiZXhwIjoxNjg2NzQ2MjU0fQ.Asf02BxDl9hfFCx9cXFhvjDhcvLAPSxX2DwosyAK2PE\",\n    \"message\": \"Code has been verified Successfully. Registration Successful\",\n    \"data\": {\n        \"_id\": \"646227734d7e4bd61bcf1daf\",\n        \"first_name\": \"Hello\",\n        \"last_name\": \"User\",\n        \"full_name\": \"Hello User\",\n        \"email\": \"hello@yopmail.com\",\n        \"password\": \"$2b$08$TDAVkdegUwavQUo6IJqrUukgHC71mLB6etZzpMkYbE3RycfdWGQHu\",\n        \"role\": \"645c8b90ef5a641d4d2e47a7\",\n        \"profile_pic\": \"\",\n        \"gender\": \"\",\n        \"dob\": null,\n        \"deviceToken\": \"\",\n        \"deviceType\": \"\",\n        \"register_type\": \"normal\",\n        \"emailOTP\": \"\",\n        \"phoneOTP\": \"\",\n        \"social_id\": \"\",\n        \"isMobileVerified\": false,\n        \"isEmailVerified\": true,\n        \"isSignupCompleted\": false,\n        \"isDeleted\": false,\n        \"isActive\": true,\n        \"createdAt\": \"2023-05-15T12:37:07.540Z\",\n        \"updatedAt\": \"2023-05-15T12:37:34.842Z\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserEmailLinkVerify"
+  },
+  {
+    "type": "post",
+    "url": "/user/email-verify",
+    "title": "Email Verify",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User Email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "emailOTP",
+            "description": "<p>OTP</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {},\n    \"message\": \"Email Verified\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserEmailVerify"
+  },
+  {
+    "type": "post",
+    "url": "/user/forget-password-request",
+    "title": "Forget Password Request",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {},\n    \"message\": \"OTP triggered to your email address associated with this account.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserForgetPasswordRequest"
+  },
+  {
+    "type": "post",
+    "url": "/user/forget-password-verify",
+    "title": "Forget Password Verify",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "otp",
+            "description": "<p>OTP</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {},\n    \"message\": \"OTP verifcation successfully done\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserForgetPasswordVerify"
+  },
+  {
+    "type": "post",
+    "url": "/user/resend-otp",
+    "title": "Resend OTP",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>User Email</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {},\n    \"message\": \"OTP sent successfully! Please check your email inbox.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserResendOtp"
+  },
+  {
+    "type": "post",
+    "url": "/user/reset-password",
+    "title": "Reset Password",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>New Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "confirm_password",
+            "description": "<p>Confirm Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>Userid</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {},\n    \"message\": \"Password changed successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserResetPassword"
+  },
+  {
+    "type": "post",
+    "url": "/user/signin",
+    "title": "Signin",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {\n        \"_id\": \"646227fa3811b97e1fc073f3\",\n        \"first_name\": \"Hello\",\n        \"last_name\": \"User\",\n        \"full_name\": \"Hello User\",\n        \"email\": \"hello@yopmail.com\",\n        \"password\": \"$2b$08$dxBlvZPtJYmsweQ3Br60aO19iCcTo14w0LoXtFUfXwAS/8obgdYpu\",\n        \"role\": \"645c8b90ef5a641d4d2e47a7\",\n        \"profile_pic\": \"\",\n        \"gender\": \"\",\n        \"dob\": null,\n        \"deviceToken\": \"\",\n        \"deviceType\": \"\",\n        \"register_type\": \"normal\",\n        \"emailOTP\": \"\",\n        \"phoneOTP\": \"\",\n        \"social_id\": \"\",\n        \"isMobileVerified\": false,\n        \"isEmailVerified\": true,\n        \"isSignupCompleted\": false,\n        \"isDeleted\": false,\n        \"isActive\": true,\n        \"createdAt\": \"2023-05-15T12:39:22.175Z\",\n        \"updatedAt\": \"2023-05-15T13:13:12.779Z\"\n    },\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NjIyN2ZhMzgxMWI5N2UxZmMwNzNmMyIsInRva2VuX2tleSI6IjU0OTY5MDY0IiwiaWF0IjoxNjg0MTU2MzkyLCJleHAiOjE2ODY3NDgzOTJ9.RI7oT0PqebYj64YqkHQEbf-2stgpqzSEMnJqcw8YlD4\",\n    \"message\": \"Logged in successfully!\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserSignin"
+  },
+  {
+    "type": "post",
+    "url": "/user/signup",
+    "title": "Signup",
+    "version": "1.0.0",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "full_name",
+            "description": "<p>Full Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "email",
+            "description": "<p>Email</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "role",
+            "description": "<p>[enter the value of _id of role]</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {\n        \"first_name\": \"Hello\",\n        \"last_name\": \"User\",\n        \"full_name\": \"Hello User\",\n        \"email\": \"hello@yopmail.com\",\n        \"password\": \"$2b$08$TDAVkdegUwavQUo6IJqrUukgHC71mLB6etZzpMkYbE3RycfdWGQHu\",\n        \"role\": \"645c8b90ef5a641d4d2e47a7\",\n        \"profile_pic\": \"\",\n        \"gender\": \"\",\n        \"dob\": null,\n        \"deviceToken\": \"\",\n        \"deviceType\": \"\",\n        \"register_type\": \"normal\",\n        \"emailOTP\": \"\",\n        \"phoneOTP\": \"\",\n        \"social_id\": \"\",\n        \"isMobileVerified\": false,\n        \"isEmailVerified\": false,\n        \"isSignupCompleted\": false,\n        \"isDeleted\": false,\n        \"isActive\": true,\n        \"_id\": \"646227734d7e4bd61bcf1daf\",\n        \"createdAt\": \"2023-05-15T12:37:07.540Z\",\n        \"updatedAt\": \"2023-05-15T12:37:07.540Z\"\n    },\n    \"message\": \"Please verify the link sent to your mail.\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserSignup"
+  },
+  {
+    "type": "post",
+    "url": "/user/update-profile",
+    "title": "Update Profile",
+    "version": "1.0.0",
+    "group": "User",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "string",
+            "optional": false,
+            "field": "x-access-token",
+            "description": "<p>User Token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "full_name",
+            "description": "<p>Full Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "first_name",
+            "description": "<p>First Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "last_name",
+            "description": "<p>Last Name</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "profile_pic",
+            "description": "<p>Profile Pic</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {\n        \"_id\": \"6458af0c6c0b6f1520504689\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Dalton\",\n        \"full_name\": \"John Dalton\",\n        \"email\": \"johndalton@yopmail.com\",\n        \"password\": \"$2b$08$QveliBbSBQx6XWAGv6usuuKErlJJJmNzZmY1W8ba1zU7pLqXrf4we\",\n        \"role\": \"5ff30fa0026424da732724ce\",\n        \"profile_pic\": \"profile_pic_1683542380724_user1.jpg\",\n        \"emailOTP\": \"\",\n        \"phoneOTP\": \"\",\n        \"deviceToken\": \"\",\n        \"deviceType\": \"\",\n        \"register_type\": \"normal\",\n        \"social_id\": \"\",\n        \"isMobileVerified\": false,\n        \"isEmailVerified\": true,\n        \"isSignupCompleted\": false,\n        \"isDeleted\": false,\n        \"isActive\": true,\n        \"createdAt\": \"2023-05-08T08:13:00.288Z\",\n        \"updatedAt\": \"2023-05-08T10:39:40.732Z\"\n    },\n    \"message\": \"Profile updated successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/user.routes.js",
+    "groupTitle": "User",
+    "name": "PostUserUpdateProfile"
+  },
+  {
+    "type": "GET",
+    "url": "/video/details/:id",
+    "title": "Video Details",
+    "version": "1.0.0",
+    "group": "Video",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "ObjectId",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Video Id</p>"
+          }
+        ]
+      }
+    },
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "x-access-token",
+            "description": "<p>User's Access Token</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"message\": \"Video details has been Fetched Successfully\",\n    \"data\": {\n        \"_id\": \"64622e3e022780adab349732\",\n        \"title\": \"New Video\",\n        \"video\": \"1684155966258_mp4.svg\",\n        \"thumbnail_image\": \"1684155966259_pexels-anand-dandekar-2167355.jpg\",\n        \"user_id\": \"646227fa3811b97e1fc073f3\",\n        \"isDeleted\": false,\n        \"status\": \"Active\",\n        \"createdAt\": \"2023-05-15T13:06:06.277Z\",\n        \"updatedAt\": \"2023-05-15T13:06:06.277Z\"\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/video.route.js",
+    "groupTitle": "Video",
+    "name": "GetVideoDetailsId"
+  },
+  {
+    "type": "POST",
+    "url": "/video/add",
+    "title": "Video Add",
+    "version": "1.0.0",
+    "group": "Video",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "type": "String",
+            "optional": false,
+            "field": "x-access-token",
+            "description": "<p>User's Access Token</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "title",
+            "description": "<p>Video Title</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "video",
+            "description": "<p>Video</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "thumbnail_image",
+            "description": "<p>Thumbnail Image</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": {\n        \"title\": \"New Video\",\n        \"video\": \"1684155966258_mp4.svg\",\n        \"thumbnail_image\": \"1684155966259_pexels-anand-dandekar-2167355.jpg\",\n        \"user_id\": \"646227fa3811b97e1fc073f3\",\n        \"isDeleted\": false,\n        \"status\": \"Active\",\n        \"_id\": \"64622e3e022780adab349732\",\n        \"createdAt\": \"2023-05-15T13:06:06.277Z\",\n        \"updatedAt\": \"2023-05-15T13:06:06.277Z\"\n    },\n    \"message\": \"Video has been added successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/video.route.js",
+    "groupTitle": "Video",
+    "name": "PostVideoAdd"
+  },
+  {
+    "type": "POST",
+    "url": "/video/list",
+    "title": "Video List",
+    "version": "1.0.0",
+    "group": "Video",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Object",
+            "optional": false,
+            "field": "pagination",
+            "description": ""
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "user_id",
+            "description": "<p>(optional) [give the value of _id of user when they login otherwise don't use it]</p>"
+          }
+        ]
+      },
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n    \"pagination\":{\n        \"page\":1,\n        \"perpage\":3\n    }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success",
+          "content": "{\n    \"status\": 200,\n    \"data\": [\n        {\n            \"_id\": \"6463645e3ff5508246956d5d\",\n            \"title\": \"video 6\",\n            \"video\": \"1684235357986_video6.mp4\",\n            \"thumbnail_image\": \"1684235358110_thumbnail6.webp\",\n            \"user_id\": \"6463426ec46e8daa62e0353c\",\n            \"isDeleted\": false,\n            \"status\": \"Active\",\n            \"createdAt\": \"2023-05-16T11:09:18.114Z\",\n            \"updatedAt\": \"2023-05-16T11:09:18.114Z\",\n            \"creatorDetails\": {\n                \"_id\": \"6463426ec46e8daa62e0353c\",\n                \"full_name\": \"Abc Def\",\n                \"profile_pic\": \"\"\n            }\n        },\n        {\n            \"_id\": \"64635d193ff5508246956cb4\",\n            \"title\": \"video upload test\",\n            \"video\": \"1684233497112_education.mp4\",\n            \"thumbnail_image\": \"1684233497221_video-thumb.png\",\n            \"user_id\": \"6463426ec46e8daa62e0353c\",\n            \"isDeleted\": false,\n            \"status\": \"Active\",\n            \"createdAt\": \"2023-05-16T10:38:17.227Z\",\n            \"updatedAt\": \"2023-05-16T10:38:17.227Z\",\n            \"creatorDetails\": {\n                \"_id\": \"6463426ec46e8daa62e0353c\",\n                \"full_name\": \"Abc Def\",\n                \"profile_pic\": \"\"\n            }\n        }\n    ],\n    \"total\": 4,\n    \"limit\": 2,\n    \"page\": 1,\n    \"pages\": 2,\n    \"message\": \"Video list has been fetched successfully\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "app/routes/api/video.route.js",
+    "groupTitle": "Video",
+    "name": "PostVideoList"
+  }
+]

@@ -1,0 +1,9 @@
+{
+    "name": "Edutube API documentation",
+    "version": "1.0.0",
+    "description": "API Edutube",
+    "url": "https://edutube-admin.dedicateddevelopers.us/api",
+    "template": {
+        "forceLanguage": "en"
+    }
+}

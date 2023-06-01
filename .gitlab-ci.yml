@@ -1,0 +1,12 @@
+dev-deployment:
+ variables:
+   GIT_STRATEGY: fetch
+ script:
+   - bash ~/gitlab/node18/node18-projectdeploy.sh
+ environment:
+     name: Development
+     url : https://edutube.dedicateddevelopers.us/
+ tags:
+         - node-docker
+ only:
+   - dev

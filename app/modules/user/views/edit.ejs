@@ -1,0 +1,105 @@
+<% layout(layout_directory+'/mainLayout') -%>
+
+<div class="kt-subheader   kt-grid__item" id="kt_subheader">
+	<div class="kt-subheader__main">
+		<h3 class="kt-subheader__title"> <%= page_title %> </h3>
+		<span class="kt-subheader__separator kt-subheader__separator--v"></span>
+		<div class="kt-subheader__breadcrumbs">
+			<a href="<%= generateUrl('user.dashboard') %>" class="kt-subheader__breadcrumbs-home">Dashboard</a>
+			<span class="kt-subheader__breadcrumbs-separator"></span>
+			<span class="kt-subheader__breadcrumbs-link kt-subheader__breadcrumbs-link--active"><%= page_title %></span>
+		</div>
+	</div>
+</div>
+
+<div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="kt-portlet">
+				<form class="kt-form kt-form--label-right" id="frmEditAdmin" action="<%= generateUrl('user.update') %>"
+					method="POST" enctype='multipart/form-data'>
+					<div class="kt-portlet__body">
+						<div class="form-group row">
+							<div class="col-lg-6 form-group-sub">
+								<label for="first_name" class="control-label asterisk">First Name</label>
+								<div class="controls">
+									<input id="first_name" name="first_name" type="text" placeholder="Enter first name"
+										class="form-control required" required data-validation-required-message="This field is required"
+										value="<%= response.user_data.first_name %>" pattern="[a-zA-Z]*"/>
+								</div>
+							</div>					
+							<div class="col-lg-6 form-group-sub">
+								<label for="last_name" class="control-label">Last Name</label>
+								<div class="controls">
+									<input id="last_name" name="last_name" type="text" placeholder="Enter last name"
+										class="form-control" value="<%= response.user_data.last_name %>" pattern="[a-zA-Z]*"/>
+								</div>
+							</div>
+						</div>
+						<div class="form-group row">
+							<div class="col-lg-6 form-group-sub">
+								<label for="email" class="control-label asterisk">Email</label>
+								<div class="controls">
+									<input id="email" name="email" type="text" autocomplete="off" readonly placeholder="Enter Email"
+										class="form-control required" required data-validation-required-message="This field is required"
+										value="<%=response.user_data.email%>"
+										data-validation-regex-regex="([A-Za-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})"
+										data-validation-regex-message="Enter Valid Email" aria-invalid="true" />
+								</div>
+							</div>
+
+							<div class="col-lg-4 form-group-sub">
+								<label class="control-label">Profile Image</label>
+								<div class="controls">
+									<input type="file" name="profile_pic" id="profile_pic" class="form-control imagepicker" accept="image/*">
+								</div>
+								
+							</div>
+							
+						</div>
+						<div class="form-group row">
+							<div class="col-lg-6 form-group-sub">
+								<label for="gender" class="control-label asterisk">Gender</label>
+								<div class="controls">
+									<select id="gender" name="gender" type="text" class="form-control required" required data-validation-required-message="This field is required">
+										<option value="" selected disabled>Choose Gender</option>
+										<option value="Male" <%=response.user_data.gender=="Male" ? 'selected' : '' %>>Male</option>
+										<option value="Female" <%=response.user_data.gender=="Female" ? 'selected' : '' %>>Female</option>
+								   </select>
+								   
+								</div>
+							</div>
+
+							<div class="col-lg-6 form-group-sub">
+								<label class="asterisk">Date of Birth</label>
+								<div class="input-group date">
+									<input type="text" name="dob" id="kt_datepicker_2" readonly class="form-control required" required
+									placeholder="Enter Date of Birth" value="<%=moment(response.user_data.dob).format('MM/DD/YYYY')%>">
+									<div class="input-group-append">
+									  <span class="input-group-text">
+										<i class="la la-calendar-check-o"></i>
+									  </span>
+									</div>
+								  </div>
+							</div>
+							
+							
+						</div>
+						
+					</div>
+					<div class="kt-portlet__foot">
+						<div class="kt-form__actions">
+							<div class="row">
+								<div class="col-lg-6">
+									<input type="hidden" name="uid" value="<%= response.user_data._id%>">
+									<button type="submit" class="btn btn-primary">Update</button>
+									<a href="<%= generateUrl('user.listing') %>" class="btn btn-secondary">Cancel</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

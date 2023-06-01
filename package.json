@@ -1,0 +1,75 @@
+{
+  "name": "Edutube",
+  "version": "1.0.0",
+  "description": "",
+  "main": "edutube.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon edutube.js",
+    "dev": "NODE_ENV=dev npx nodemon edutube.js",
+    "prod": "NODE_ENV=prod npx forever start edutube.js",
+    "doc:gen": "rm -rf public/apidoc && npx apidoc -i app/routes/api/ -o public/apidoc"
+  },
+  "engines": {
+    "node": ">=8.x",
+    "npm": ">=5.x"
+  },
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "axios": "^1.2.1",
+    "bcrypt": "5.0.1",
+    "body-parser": "1.19.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.5",
+    "csvtojson": "^2.0.10",
+    "dotenv": "^5.0.1",
+    "ejs": "3.1.6",
+    "ejs-locals": "^1.0.2",
+    "email-templates": "9.0.0",
+    "express": "4.17.3",
+    "express-session": "1.17.2",
+    "fs": "0.0.1-security",
+    "gm": "^1.23.1",
+    "imagemagick": "^0.1.3",
+    "json2csv": "^5.0.7",
+    "jsonwebtoken": "8.5.1",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.5.24",
+    "moment": "2.29.1",
+    "mongoose": "6.2.7",
+    "mongoose-aggregate-paginate": "2.0.2",
+    "multer": "1.4.4",
+    "named-routes": "^2.0.7",
+    "node-libcurl": "^3.0.0",
+    "nodemailer": "6.7.2",
+    "nodemon": "^1.19.4",
+    "otp-generator": "^4.0.1",
+    "passport": "^0.5.2",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "q": "^1.5.1",
+    "querystring": "^0.2.1",
+    "route-label": "^1.2.3",
+    "underscore": "1.13.2"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/*",
+      "node_modules/*"
+    ]
+  },
+  "devDependencies": {
+    "apidoc": "^0.17.7",
+    "forever": "^0.15.3",
+    "npx": "^10.2.2"
+  }
+}
