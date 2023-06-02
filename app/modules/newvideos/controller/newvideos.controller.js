@@ -17,7 +17,17 @@ class adminController extends videoController {
      * //@Description:To render list page
      */
     async list(req, res) {
-        super.videoList(req)
+        temp = super.videoList(req)
+        try {
+            res.render("admin/views/list.ejs", {
+                page_name: "video-approval",
+                page_title: "Unapproved Videos",
+                user: req.user
+            })
+
+        } catch (err) {
+            return res.status(500).send({ message: err.message })
+        }
     };
     /*
 // @Method: create
