@@ -1,6 +1,8 @@
 node_modules/*
 node_modules
 ./node_modules
+node_modules/
+node_modules\
 *.zip
 *.tgz
 *.gz
@@ -13,3 +15,4 @@ package-lock.json
 port.txt
 jenkin.sh
 port.txt
+yarn.lock
