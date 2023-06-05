@@ -30,9 +30,7 @@
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="dropdown dropdown-inline">
-                            <a href="<%= generateUrl('admin.create')%>" class="btn btn-brand btn-icon-sm">
-                                <i class="flaticon2-plus"></i> Add New
-                            </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -60,8 +58,8 @@
                                         <div class="kt-form__control">
                                             <select class="form-control bootstrap-select" id="kt_form_status">
                                                 <option value="">All</option>
-                                                <option value="Active">Active</option>
-                                                <option value="Inactive">Inactive</option>
+                                                <option value="Active">Inactive</option>
+                                                <option value="Inactive">Active</option>
                                             </select>
                                         </div>
                                     </div>
@@ -107,10 +105,12 @@
             </div>
         </div>
     </div>
-    <!--script>
+    
+    
+    <script>
         var fileref = document.createElement('script')
         fileref.setAttribute("type", "text/javascript")
         fileref.setAttribute("src",
-            "/assets/app/custom/general/crud/metronic-datatable/advanced/record-selection-admin.js");
+            "/assets/app/custom/general/crud/metronic-datatable/advanced/record-selection-videos.js");
         document.getElementsByTagName("body")[0].appendChild(fileref);
-    </script-->
+    </script>

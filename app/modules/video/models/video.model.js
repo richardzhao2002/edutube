@@ -12,6 +12,7 @@ const videoSchema = new Schema({
     user_id: { type: Schema.Types.ObjectId, ref: 'User', default: null },
     isDeleted: { type: Boolean, default: false, enum: [true, false] },
     status: { type: String, default: 'Active', enum: status },
+    isActive: { type: Boolean, default: false, enum: [true, false] },
 }, { timestamps: true, versionKey: false });
 
 // For pagination

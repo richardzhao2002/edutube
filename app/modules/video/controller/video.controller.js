@@ -2,10 +2,6 @@ const express = require("express");
 const router = express.Router();
 const routeLabel = require("route-label");
 const namedRouter = routeLabel(router);
-//const userRepo = require('user/repositories/user.repository');
-//const User = require('user/models/user.model');
-//const roleRepo=require("role/repositories/role.repository");
-//const videoController = require("webservice/video.controller");
 const videoRepo = require('video/repositories/video.repository');
 
 class videoController {
@@ -50,7 +46,24 @@ class videoController {
   */
     async getAll(req, res) {
         try {
-            let videoData = await videoRepo.getAll(req);
+            if (!req.body.pagination) {
+                req.body.pagination = {};
+            }
+
+            if (!req.body.pagination.page) {
+                req.body.pagination.page = 1;
+            } else {
+                req.body.pagination.page = parseInt(req.body.pagination.page);
+            }
+
+            if (!req.body.pagination.perpage) {
+                req.body.pagination.perpage = 5;
+            } else {
+                //req.body.pagination.perpage = parseInt(req.body.pagination.perpage);
+                req.body.pagination.perpage = 5;
+            }
+
+            let video = await videoRepo.getAll(req);
             if (_.has(req.body, "sort")) {
                 var sortOrder = req.body.sort.sort;
                 var sortField = req.body.sort.field;
@@ -81,6 +94,7 @@ class videoController {
             };
         }
     };
+
     /*
   // @Method: edit
   // @Description:  admin edit page
@@ -106,7 +120,31 @@ class videoController {
    // @Description: admin status change action
    */
     async statusChange(req, res) {
-        
+        try {
+            let videoInfo = await videoRepo.getById(req.params.id);
+            if (!_.isEmpty(videoInfo)) {
+                if (!("isActive" in videoInfo)) {
+                    videoInfo.isActive = false;
+                }
+                let status =
+                    videoInfo.isActive == true ? false : true;
+                let videoUpdate = videoRepo.updateById({
+                    isActive: status,
+                }, req.params.id);
+                if (videoUpdate) {
+                    req.flash("success", "Admin status has changed successfully" + status);
+                    res.redirect(namedRouter.urlFor("video.list"));
+                } else {
+                    req.flash("error", "Somthing went wrong");
+                    res.redirect(namedRouter.urlFor("video.list"));
+                }
+            }
+
+        } catch (e) {
+            return res.status(500).send({
+                message: e.message,
+            });
+        }
     };
 
 

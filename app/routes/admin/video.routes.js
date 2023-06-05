@@ -12,8 +12,10 @@ namedRouter.all('/video*', auth.authenticate);
 
 // admin cms list route
 namedRouter.get("video.list", '/video/list', videoController.list);
+
 namedRouter.post("video.getall", '/video/getall', async (req, res) => {
     try {
+        //const success = await videoController.getAll(req, res);
         const success = await videoController.getAll(req, res);
         res.send({
             "meta": success.meta,
@@ -23,11 +25,8 @@ namedRouter.post("video.getall", '/video/getall', async (req, res) => {
         res.status(error.status).send(error);
     }
 });
-/*@Route:  cms  Edit*/
-//namedRouter.get("cms.edit", '/cms/edit/:id', cmsController.edit);
 
-/*@Route:  cms  update*/
-//namedRouter.post("cms.update", '/cms/update', request_param.any(), cmsController.update);
+namedRouter.get("video.statusChange", '/video/status-change/:id', request_param.any(), videoController.statusChange);
 
 //Export the express.Router() instance
 module.exports = router;

@@ -8,7 +8,7 @@ var KTDatatableMealTypes = function () {
             type: 'remote',
             source: {
                 read: {
-                    url: `${location.protocol}//${window.location.host}/admin/getall`,
+                    url: `${location.protocol}//${window.location.host}/video/getall`,
                 },
             },
             pageSize: 10,
@@ -32,39 +32,41 @@ var KTDatatableMealTypes = function () {
         // columns definition
 
         columns: [
-
             {
                 field: 'thumbnail',
                 title: 'Thumbnail',
                 width: 90,
                 sortable: false,
-                class: 'profile_image',
+                class: 'thumbnail',
                 template: function (row) {
-                    
-                    if (row.profile_pic) {
-                        return `<img style="max-height: 45px" src = "${window.location.protocol}//${window.location.host}/uploads/video/${row.profile_pic}">`;
+                    if (row.thumbnail_image) {
+                        return `<img style="max-height: 45px" src = "${window.location.protocol}//${window.location.host}/uploads/video/${row.thumbnail_image}">`;
                     } else {
                         return `<img style="max-height: 45px" src = "${window.location.protocol}//${window.location.host}/uploads/no-image.png">`;
                     }
-                        
-                    
                 }
             },
             {
-                field: 'full_name',
-                title: 'Name',
-                width:100,
+                field: 'title',
+                title: 'Title',
                 sortable: true,
-                template: function (row) {
-                    return row.full_name;
-                },
+                template: '{{title}}',
+                width: 100
             },
             {
-                field: 'email',
-                title: 'Email',
+                field: 'video',
+                title: 'Video',
                 sortable: true,
-                template: '{{email}}',
-                width: 200
+                width: 200,
+                template: function (row) {
+                    if (row.video) {
+                        return `<video style="max-height: 45px" class="player"
+                            id="${window.location.protocol}//${window.location.host}/uploads/video/${row.video}">
+                            <source src = "${window.location.protocol}//${window.location.host}/uploads/video/${row.video}">`;
+                    } else {
+                        return `<img style="max-height: 45px" src = "${window.location.protocol}//${window.location.host}/uploads/no-image.png">`;
+                    }
+                }
             },
             {
                 field: 'isActive',
@@ -76,18 +78,32 @@ var KTDatatableMealTypes = function () {
                 template: function (row) {
                     
                     var class_name = 'kt-badge--danger';
-                    var title = 'Unapproved';
+                    var title = 'Inactive';
                     if(row.isActive==true){
                         class_name = 'kt-badge--brand';
-                        title = 'Approved';
+                        title = 'Active';
                     }
                     
                     return '<span style="cursor: pointer;" class="kt-badge ' + class_name +
                         ' kt-badge--inline kt-badge--pill KTStatusUpdate onHover curserpointer" data-id="' + row._id + '" >' + title +
                         '</span>';
                 },
-            }
-        ],
+            }, {
+                field: 'Actions',
+                title: 'Actions',
+                sortable: false,
+                width: 120,
+                overflow: 'visible',
+                textAlign: 'center',
+                autoHide: false,
+                template: function (row) {
+                    return '\
+                    \<a id="del-' + row._id + '" href="javascript:;" class="btn btn-sm btn-clean btn-icon btn-icon-sm ktDelete" title="Delete">\
+                        <i class="flaticon-delete"></i>\
+                    </a>\
+                ';
+                },
+            }],
     };
 
     // basic demo
@@ -152,7 +168,7 @@ var KTDatatableMealTypes = function () {
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    window.location.href = `${window.location.protocol}//${window.location.host}/admin/status-change/${elemID}`;
+                    window.location.href = `${window.location.protocol}//${window.location.host}/video/status-change/${elemID}`;
                 }
             });
         })
@@ -167,11 +183,20 @@ var KTDatatableMealTypes = function () {
                 cancelButtonText: 'No, cancel!',
                 reverseButtons: true
             }).then(function (result) {
-                if (result.value) {
+                if (result.value) {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
                     window.location.href = `${location.protocol}//${window.location.host}/admin/delete/${elemID}`;
                 }
             });
         });
+        $(document).on('click', '.player', function () {
+            var location = $(this).attr('id')
+            swal.fire({
+                title: "View Video",
+                icon: 'info',
+                html:
+                '<video width="300" height="168" src=' + location + ' frameborder="0" allowfullscreen controls></video>',
+            })
+        })
     };
 
 
