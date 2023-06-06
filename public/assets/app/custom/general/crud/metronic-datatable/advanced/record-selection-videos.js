@@ -71,7 +71,7 @@ var KTDatatableMealTypes = function () {
             {
                 field: 'isActive',
                 title: 'Status',
-                sortable: false,
+                sortable: true,
                 width: 100,
                 textAlign: 'center',
                 // callback function support for column rendering
@@ -79,11 +79,10 @@ var KTDatatableMealTypes = function () {
                     
                     var class_name = 'kt-badge--danger';
                     var title = 'Inactive';
-                    if(row.isActive==true){
+                    if(row.status=='Active'){
                         class_name = 'kt-badge--brand';
                         title = 'Active';
                     }
-                    
                     return '<span style="cursor: pointer;" class="kt-badge ' + class_name +
                         ' kt-badge--inline kt-badge--pill KTStatusUpdate onHover curserpointer" data-id="' + row._id + '" >' + title +
                         '</span>';

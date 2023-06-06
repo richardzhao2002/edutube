@@ -162,8 +162,8 @@ const videoRepository = {
             var and_clauses = [];
 
             and_clauses.push({
-                 "status": "Active", 
-            "isDeleted": false ,
+                "status": "Active", 
+                "isDeleted": false ,
             //  'user_id': mongoose.Types.ObjectId(req.user._id)
             });
             if(req.body.userId){

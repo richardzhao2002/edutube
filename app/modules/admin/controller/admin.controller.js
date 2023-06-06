@@ -210,7 +210,6 @@ class adminController {
                     res.redirect(namedRouter.urlFor("admin.list"));
                 }
             }
-
         } catch (e) {
             return res.status(500).send({
                 message: e.message,

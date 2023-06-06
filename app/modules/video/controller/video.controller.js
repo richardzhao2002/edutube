@@ -3,6 +3,7 @@ const router = express.Router();
 const routeLabel = require("route-label");
 const namedRouter = routeLabel(router);
 const videoRepo = require('video/repositories/video.repository');
+const videoModel = require('video/models/video.model');
 
 class videoController {
 
@@ -123,16 +124,24 @@ class videoController {
         try {
             let videoInfo = await videoRepo.getById(req.params.id);
             if (!_.isEmpty(videoInfo)) {
-                if (!("isActive" in videoInfo)) {
-                    videoInfo.isActive = false;
-                }
+                /*
                 let status =
                     videoInfo.isActive == true ? false : true;
-                let videoUpdate = videoRepo.updateById({
-                    isActive: status,
-                }, req.params.id);
+                let videoUpdate = videoModel.findByIdAndUpdate(req.params.id, 
+                    {$set: {"isActive": status}, },
+                    {upsert:true, multi:true},
+                    function(err, numberAffected){
+                    });
+                */
+               let status = 
+                    videoInfo.status == 'Active' ? 'Inactive' : 'Active';
+                let videoUpdate = videoModel.findByIdAndUpdate(req.params.id, 
+                    {$set: {"status": status}, },
+                    {upsert:true, multi:true},
+                    function(err, numberAffected){
+                    });
                 if (videoUpdate) {
-                    req.flash("success", "Admin status has changed successfully" + status);
+                    req.flash("success", "Video active status has been changed.");
                     res.redirect(namedRouter.urlFor("video.list"));
                 } else {
                     req.flash("error", "Somthing went wrong");
