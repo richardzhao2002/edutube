@@ -8,12 +8,12 @@ const multer = require('multer');
 const request_param = multer();
 
 //authentication section of video
-namedRouter.all('/video*', auth.authenticate);
+namedRouter.all('/adminVideo*', auth.authenticate);
 
 // admin cms list route
-namedRouter.get("video.list", '/video/list', videoController.list);
+namedRouter.get("adminVideo.list", '/adminVideo/list', videoController.list);
 
-namedRouter.post("video.getall", '/video/getall', async (req, res) => {
+namedRouter.post("adminVideo.getall", '/adminVideo/getall', async (req, res) => {
     try {
         //const success = await videoController.getAll(req, res);
         const success = await videoController.getAll(req, res);
@@ -26,7 +26,7 @@ namedRouter.post("video.getall", '/video/getall', async (req, res) => {
     }
 });
 
-namedRouter.get("video.statusChange", '/video/status-change/:id', request_param.any(), videoController.statusChange);
+namedRouter.get("adminVideo.statusChange", '/adminVideo/status-change/:id', request_param.any(), videoController.statusChange);
 
 //Export the express.Router() instance
 module.exports = router;

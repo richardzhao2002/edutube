@@ -16,10 +16,9 @@ class adminController {
     async list(req, res) {
         try {
             res.render("users_ip/views/list.ejs", {
-                page_name: "user-management",
+                page_name: "ip-management",
                 page_title: "IP List",
                 user: req.user,
-                userId:req.params.id
             })
 
         } catch (err) {
@@ -60,19 +59,19 @@ class adminController {
     };
     /*
    // @Method: statusChange
-   // @Description: admin status change action
+   // @Description: IP refresh to perform 2 tasks:
+        If the user has not been created, adds the user
+        Otherwise refreshes the entry to update timestamp
+
+        I also don't think we need so much given into req.
    */
     async statusChange(req, res) {
         try {
-
-
-            let adminIfo = await userIpRepo.getById(req.params.id);
-
-            if (!_.isEmpty(adminIfo)) {
-                let adminStatus =
-                    adminIfo.isActive == true ? false : true;
+            let userip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+            let info = await userIpRepo.getByField(userip);
+            if (!_.isEmpty(info)) {
                 let adminUpdate = userIpRepo.updateById({
-                    isActive: adminStatus,
+                    ip: userip,
                 }, req.params.id);
                 if (adminUpdate) {
                     req.flash("success", "Admin status has changed successfully");
@@ -81,6 +80,9 @@ class adminController {
                     req.flash("error", "Somthing went wrong");
                     res.redirect(namedRouter.urlFor("admin.list"));
                 }
+            } else {
+                userIpRepo.save({ip: userip});
+                res.redirect(namedRouter.urlFor("users-ip.list"));
             }
 
         } catch (e) {
@@ -89,7 +91,6 @@ class adminController {
             });
         }
     };
-
 
 };
 module.exports = new adminController()

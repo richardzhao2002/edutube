@@ -9,7 +9,7 @@ const ipRepository = {
             var and_clauses = [];
             and_clauses.push({
                 "isDeleted": false,
-                "user_id":mongoose.Types.ObjectId(req.params.id)
+                //"user_id":mongoose.Types.ObjectId(req.params.id)
             });
 
             if (_.isObject(req.body.query) && _.has(req.body.query, 'generalSearch')) {

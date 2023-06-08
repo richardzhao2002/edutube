@@ -2,14 +2,15 @@
 // Class definition
 var KTDatatableMealTypes = function () {
     // Private functions
-    let userId=$('#userId').val()
+    //let userId=$('#userId').val()
     var options = {
         // datasource definition
         data: {
             type: 'remote',
             source: {
                 read: {
-                    url: `${location.protocol}//${window.location.host}/users-ip/getall/${userId}`,
+                    //url: `${location.protocol}//${window.location.host}/users-ip/getall/${userId}`,
+                    url: `${location.protocol}//${window.location.host}/users-ip/getall`,
                 },
             },
             pageSize: 10,

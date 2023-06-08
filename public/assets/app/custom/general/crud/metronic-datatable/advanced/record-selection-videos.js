@@ -8,7 +8,7 @@ var KTDatatableMealTypes = function () {
             type: 'remote',
             source: {
                 read: {
-                    url: `${location.protocol}//${window.location.host}/video/getall`,
+                    url: `${location.protocol}//${window.location.host}/adminVideo/getall`,
                 },
             },
             pageSize: 10,
@@ -167,7 +167,7 @@ var KTDatatableMealTypes = function () {
                 reverseButtons: true
             }).then(function (result) {
                 if (result.value) {
-                    window.location.href = `${window.location.protocol}//${window.location.host}/video/status-change/${elemID}`;
+                    window.location.href = `${window.location.protocol}//${window.location.host}/adminVideo/status-change/${elemID}`;
                 }
             });
         })

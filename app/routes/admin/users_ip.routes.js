@@ -21,7 +21,7 @@ namedRouter.post("users-ip.getall", '/users-ip/getall/:id', async (req, res) => 
     }
 });
 
-namedRouter.get("users-ip.list", '/users-ip/list/:id', ipController.list);
+namedRouter.get("users-ip.list", '/users-ip/list', ipController.list);
 namedRouter.get("users-ip.statusChange", '/users-ip/status-change/:id/:userId', request_param.any(), ipController.statusChange);
 
 module.exports = router; 

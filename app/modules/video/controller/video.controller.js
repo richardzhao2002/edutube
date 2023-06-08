@@ -142,10 +142,10 @@ class videoController {
                     });
                 if (videoUpdate) {
                     req.flash("success", "Video active status has been changed.");
-                    res.redirect(namedRouter.urlFor("video.list"));
+                    res.redirect(namedRouter.urlFor("adminVideo.list"));
                 } else {
                     req.flash("error", "Somthing went wrong");
-                    res.redirect(namedRouter.urlFor("video.list"));
+                    res.redirect(namedRouter.urlFor("adminVideo.list"));
                 }
             }
 
