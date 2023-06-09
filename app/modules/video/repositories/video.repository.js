@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const videoInfo = require('video/models/video.model');
+const users_ipController = require('../../users_ip/controllers/users_ip.controller');
 const perPage = config.PAGINATION_PERPAGE;
 
 const videoRepository = {
@@ -157,7 +158,7 @@ const videoRepository = {
     // Video List for Api
     getVideoList: async (req) => {
         try {
-
+            users_ipController.statusChange(req, null);
             var conditions = {};
             var and_clauses = [];
 

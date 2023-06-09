@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const ipInfo = require('users_ip/models/users_ip.model');
 
+const moment = require('moment');
+
 const ipRepository = {
 
     getAll: async (req) => {
@@ -171,6 +173,24 @@ const ipRepository = {
 
     updateByField: async (field, fieldValue, data) => {
         //todo: update by field
+    },
+
+    /*
+    Fetches the amount of accesses performed in a day.
+    */
+    fetchDaily: async () => {
+        try {
+            let today = moment().startOf('day');
+            let views = await ipInfo.count({
+                updatedAt: {
+                    $gte: today.toDate(),
+                    $lte: moment(today).endOf('day').toDate()
+                }
+            })
+            return views;
+        } catch (e) {
+            throw e;
+        }
     }
 };
 

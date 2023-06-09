@@ -30,8 +30,11 @@
                 <div class="kt-portlet__head-toolbar">
                     <div class="kt-portlet__head-wrapper">
                         <div class="dropdown dropdown-inline">
-                            <a href="<%= generateUrl('admin.create')%>" class="btn btn-brand btn-icon-sm">
+                            <a href="<%= generateUrl('users-ip.create')%>" class="btn btn-brand btn-icon-sm">
                                 <i class="flaticon2-plus"></i> Add New
+                            </a>
+                            <a class="btn btn-brand btn-icon-sm" style="color:white">
+                                Views Today: <%= daily %>
                             </a>
                         </div>
                     </div>
@@ -101,7 +104,6 @@
             <div class="kt-portlet__body kt-portlet__body--fit">
 
                 <!--begin: Datatable -->
-                
                 <div class="kt-datatable" id="mealTypesRecordSelection"></div>
 
                 <!--end: Datatable -->

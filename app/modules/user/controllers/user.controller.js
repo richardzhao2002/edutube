@@ -185,10 +185,17 @@ class UserController {
     */
     async list(req, res) {
         try {
+            let count = await userRepo.getCount({isDeleted: false});
+            let activeCount = await userRepo.getCount({
+                isDeleted: false,
+                isActive: true,
+            });
             res.render('user/views/list.ejs', {
                 page_name: 'user-management',
                 page_title: 'User List',
-                user: req.user
+                user: req.user,
+                count: count,
+                activeCount: activeCount,
             });
         } catch (e) {
             return res.status(500).send({

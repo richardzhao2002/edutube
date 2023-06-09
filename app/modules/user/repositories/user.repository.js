@@ -563,6 +563,7 @@ const userRepository = {
             throw err;
            }
       }
+      
 };
 
 module.exports = userRepository;

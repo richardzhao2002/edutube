@@ -87,7 +87,7 @@ var KTDatatableMealTypes = function () {
                         ' kt-badge--inline kt-badge--pill KTStatusUpdate onHover curserpointer" data-id="' + row._id + '" >' + title +
                         '</span>';
                 },
-            }, {
+            }, /*{
                 field: 'Actions',
                 title: 'Actions',
                 sortable: false,
@@ -102,7 +102,7 @@ var KTDatatableMealTypes = function () {
                     </a>\
                 ';
                 },
-            }],
+            }*/],
     };
 
     // basic demo

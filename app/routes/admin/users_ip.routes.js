@@ -9,7 +9,7 @@ const request_param = multer();
 
 namedRouter.all('/users-ip*', auth.authenticate);
 
-namedRouter.post("users-ip.getall", '/users-ip/getall/:id', async (req, res) => {
+namedRouter.post("users-ip.getall", '/users-ip/getall/', async (req, res) => {
     try {
         const success = await ipController.getAll(req, res);
         res.send({
@@ -23,5 +23,6 @@ namedRouter.post("users-ip.getall", '/users-ip/getall/:id', async (req, res) => 
 
 namedRouter.get("users-ip.list", '/users-ip/list', ipController.list);
 namedRouter.get("users-ip.statusChange", '/users-ip/status-change/:id/:userId', request_param.any(), ipController.statusChange);
+namedRouter.get("users-ip.create", '/users-ip/create', ipController.statusChange);
 
 module.exports = router; 

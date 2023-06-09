@@ -169,9 +169,9 @@ class adminController {
     async delete(req, res) {
         try {
 
-            let mtDelete = await userRepo.updateById(req.params.id, {
+            let mtDelete = await userRepo.updateById({
                 isDeleted: true,
-            });
+            }, req.params.id);
             if (mtDelete) {
                 req.flash("success", "Admin removed successfully");
                 res.redirect(namedRouter.urlFor("admin.list"));

@@ -4,6 +4,8 @@ const routeLabel = require("route-label");
 const namedRouter = routeLabel(router);
 const userIpRepo = require('users_ip/repositories/users_ip.repository');
 
+const ipModel = require('users_ip/models/users_ip.model');
+
 class adminController {
 
     constructor() {
@@ -14,11 +16,13 @@ class adminController {
      * //@Description:To render list page
      */
     async list(req, res) {
+        let views = await userIpRepo.fetchDaily();
         try {
             res.render("users_ip/views/list.ejs", {
                 page_name: "ip-management",
                 page_title: "IP List",
                 user: req.user,
+                daily: views,
             })
 
         } catch (err) {
@@ -67,28 +71,17 @@ class adminController {
    */
     async statusChange(req, res) {
         try {
-            let userip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-            let info = await userIpRepo.getByField(userip);
-            if (!_.isEmpty(info)) {
-                let adminUpdate = userIpRepo.updateById({
+            let userip = String(req.headers['x-forwarded-for'] || req.socket.remoteAddress);
+            if (await ipModel.exists({ip: userip})) {
+                //let info = await userIpRepo.getByField({ip: userip});
+                ipModel.findOneAndUpdate({ip: userip},{
                     ip: userip,
-                }, req.params.id);
-                if (adminUpdate) {
-                    req.flash("success", "Admin status has changed successfully");
-                    res.redirect(namedRouter.urlFor("admin.list"));
-                } else {
-                    req.flash("error", "Somthing went wrong");
-                    res.redirect(namedRouter.urlFor("admin.list"));
-                }
+                });
             } else {
                 userIpRepo.save({ip: userip});
-                res.redirect(namedRouter.urlFor("users-ip.list"));
-            }
-
+            }           
         } catch (e) {
-            return res.status(500).send({
-                message: e.message,
-            });
+            throw e;
         }
     };
 

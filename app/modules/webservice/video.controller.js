@@ -60,7 +60,7 @@ class VideoController {
             }
 
             if (!req.body.pagination.perpage) {
-                req.body.pagination.perpage = 5;
+                req.body.pagination.perpage = 20;
             } else {
                 req.body.pagination.perpage = parseInt(req.body.pagination.perpage);
             }
